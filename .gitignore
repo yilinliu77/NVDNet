@@ -1,3 +1,7 @@
+build
+external/*.zip
+external/OCCT-7_7_2/
+
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles

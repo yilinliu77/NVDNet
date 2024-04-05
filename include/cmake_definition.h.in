@@ -1,0 +1,4 @@
+#define ROOT_PATH "@ROOT_PATH@"
+#define BUILD_AIRSIM "@BUILD_AIRSIM@"
+#define EIGEN_DENSEBASE_PLUGIN "@ROOT_PATH@/include/EigenDenseBaseAddons.h"
+#define USE_ELSED @USE_ELSED@

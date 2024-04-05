@@ -1,0 +1,52 @@
+FROM nvidia/cuda:11.6.0-cudnn8-devel-ubuntu20.04
+
+LABEL maintainer="whatsevenlyl@gmail.com"
+
+# ======================================================================================================
+#                                           Install C library
+# ======================================================================================================
+SHELL ["/bin/bash", "--login", "-c"]
+
+# Proxy, commet line 11~13 if no proxy has been used
+ENV HTTP_PROXY=http://192.168.1.101:7890
+ENV HTTPS_PROXY=http://192.168.1.101:7890
+RUN rm /etc/apt/sources.list.d/cuda.list && rm /etc/apt/sources.list.d/nvidia-ml.list && sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list && sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list && apt update && apt install wget -y && echo 'use_proxy=on' > /etc/wgetrc && echo "http_proxy=${HTTP_PROXY}" >> etc/wgetrc && echo "https_proxy=${HTTP_PROXY}" >> etc/wgetrc && echo "Acquire::http::Proxy \"${HTTP_PROXY}\";" > /etc/apt/apt.conf 
+
+# apt dependencis
+ENV DEBIAN_FRONTEND=noninteractive
+RUN  apt update && apt install -y sudo git cmake libx11-dev libxft-dev bison gperf libglfw3-dev libxi-dev libxcursor-dev libxdamage-dev libxinerama-dev libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev gcc-9 gdb make gdb git cmake wget curl zip unzip tar python3 sudo libtool autoconf python3-distutils autoconf-archive
+
+RUN git clone https://github.com/whatseven/C /root/C && cd /root/C && git submodule update --init 
+WORKDIR /root/C
+
+# setup environment for C code
+RUN git pull && chmod +x scripts/setup_library.sh && bash scripts/setup_library.sh
+
+# ======================================================================================================
+#                                           Install Python library
+# ======================================================================================================
+
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
+# RUN /usr/bin/gcc --version && conda activate base && pip --version 
+
+RUN conda activate base && git clone https://github.com/whatseven/python /root/python && cd /root/python && git submodule update --init && chmod +x setup.sh && ./setup.sh
+
+# ======================================================================================================
+#                                           Variables for C library
+# ======================================================================================================
+RUN echo "export vcpkg=/root/C/external/vcpkg/scripts/buildsystems/vcpkg.cmake" >> ~/.bashrc && echo "export PATH=/usr/local/cuda/bin/:/root/C/external/vcpkg:/root/C/external/vcpkg/downloads/tools/cmake-3.22.2-linux/cmake-3.22.2-linux-x86_64/bin:/root/C/external/pangolin/build:${PATH}"  >> ~/.bashrc && echo "export CMAKE_PREFIX_PATH=/opt/conda/:${CMAKE_PREFIX_PATH}" >> ~/.bashrc  >> ~/.bashrc && echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc 
+
+# ======================================================================================================
+#                                           Other stuff
+# ======================================================================================================
+RUN echo "root:root" | chpasswd && apt update && apt install -y openssh-server vim && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && service ssh restart
+
+EXPOSE 22 15000 15001
+CMD ["/usr/sbin/sshd", "-D"]
