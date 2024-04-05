@@ -1,10 +1,10 @@
 [submodule "external/vcpkg"]
-	path = externel/vcpkg
+	path = external/vcpkg
 	url = https://github.com/microsoft/vcpkg
 [submodule "external/vcglib"]
-	path = externel/vcglib
+	path = external/vcglib
 	url = https://github.com/cnr-isti-vclab/vcglib
 [submodule "external/GTE"]
 	path = external/GTE
 	url = https://github.com/davideberly/GeometricTools
-	
+
