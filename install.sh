@@ -10,4 +10,6 @@ sed -i -e "s/tukaani-project/bminor/g" external/vcpkg/ports/liblzma/portfile.cma
 
 cd external && wget https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_7_2.zip && unzip -q V7_7_2.zip && mkdir -p OCCT-7_7_2/build && cd OCCT-7_7_2/build && cmake .. -DCMAKE_INSTALL_PREFIX=./install/ -DBUILD_MODULE_Draw=off -DUSE_TK=off -DUSE_FREETYPE=off &&  cmake --build . --target install --config RelWithDebInfo -j16 && cd ../../../
 
+echo "export LD_LIBRARY_PATH=/root/NVDNet/external/OCCT-7_7_2/build/install/lib:$LD_LIBRARY_PATH" >> ~/.zshrc
+
 mkdir build && cd build && cmake .. -DCMAKE_TOOLCHAIN_FILE=../external/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release && make -j32
