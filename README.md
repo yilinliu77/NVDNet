@@ -24,6 +24,11 @@ Please refer to `install.sh` for manual installation. This script has been teste
 
 ### Primitive extraction
 
+### Evaluation
+
+### Baselines
+
+Please refer to README.md in the `baselines` folder
 
 ## Training
 

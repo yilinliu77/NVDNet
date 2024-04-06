@@ -82,7 +82,7 @@ RUN echo 'channels:' > /root/.condarc && \
     echo '  deepmodeling: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/' >> /root/.condarc; \
     conda clean -i -y
 
-RUN git pull && chmod +x install_python.sh && ./install_python.sh
+RUN cd /root/NVDNet/ && git reset --hard && git pull && chmod +x install_python.sh && ./install_python.sh
 
 EXPOSE 22 6100 6101 6102 15000 15001
 CMD ["/usr/sbin/sshd", "-D"]
