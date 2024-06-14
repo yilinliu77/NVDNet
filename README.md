@@ -30,28 +30,33 @@ Organize the input folder as follows:
 | | - xxx.ply (points)
 ```
 
-Save the root path:
+Replace the `{data root}` with your data path::
 
 ```
-export ROOT_PATH={root path}
-export ROOT_PATH={root path}
+export DATA_ROOT={data root}
+export ROOT_PATH=$(pwd)
 ```
 
 ### Generate UDF field using NDC
 
-`cd NDC && python generate_test_voronoi_data.py ${root path} {num gpus} && cd ..`
+This step will generate the UDF field for the input point cloud using NDC. The output will be saved in `${DATA_ROOT}/feat/ndc`. You can speed up the process if you have multiple GPUs by replacing `1` with the number of GPUs you have. You can also use "CUDA_VISIBLE_DEVICES=x" to restrict the GPU usage.
 
-`./build/prepare_evaluate_gt_feature/prepare_evaluate_gt_feature {root path}/ndc_mesh {root path}/feat/ndc --resolution 256`
+`cd ${ROOT_PATH}/NDC && python generate_test_voronoi_data.py ${DATA_ROOT} 1`
 
-Replace the `{root path}` and `{num gpus}` with your data. Note that `prepare_evaluate_gt_feature` will automatically detect all the local GPU to calculate the UDF. You can use "CUDA_VISIBLE_DEVICES=x" to restrict the GPU usage.
+`${ROOT_PATH}/build/prepare_evaluate_gt_feature/prepare_evaluate_gt_feature ${DATA_ROOT}/ndc_mesh ${DATA_ROOT}/feat/ndc --resolution 256`
+
 
 ### Voronoi prediction
 
-`python test_model.py dataset.root={root path} dataset.output_dir={root path}/voronoi`
+This step will use NVDNet to predict the Voronoi diagram for the UDF field. The output Voronoi and the visualization will be saved in `${DATA_ROOT}/voronoi`. 
+
+`cd ${ROOT_PATH}/python && python test_model.py dataset.root={DATA_ROOT} dataset.output_dir={DATA_ROOT}/voronoi`
 
 ### Primitive extraction
 
-`./build/extract_mesh/extract_mesh `
+This step will extract the mesh from the Voronoi diagram. The output mesh will be saved in `${DATA_ROOT}/mesh`.
+
+`${ROOT_PATH}/build/extract_mesh/extract_mesh `
 
 ### Evaluation
 
