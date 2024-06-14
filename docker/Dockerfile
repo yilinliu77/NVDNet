@@ -35,5 +35,14 @@ RUN cd /root/ && \
     git clone --recursive https://github.com/yilinliu77/NVDNet && \
     cd NVDNet && chmod +x install.sh && ./install.sh
 
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.5.2-0-Linux-x86_64.sh -O ~/miniconda.sh && /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    /opt/conda/condabin/conda init bash zsh && \
+    echo "conda activate base" >> ~/.bashrc && echo "conda activate base" >> ~/.zshrc
+
+RUN cd /root/NVDNet/ && chmod +x install_python.sh && ./install_python.sh
+
+
 EXPOSE 22 6100 6101 6102 15000 15001
 CMD ["/usr/sbin/sshd", "-D"]

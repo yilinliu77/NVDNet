@@ -1,0 +1,39 @@
+dataset:
+  root: G:/Dataset/GSP/test_data_final
+  dataset_name: ABC_test_voxel
+#  type: gt
+  type: ndc
+  output_dir: G:/Dataset/GSP/test_data_final/pred_voronoi
+
+trainer:
+  learning_rate: 1e-4
+  gpu: 1
+  num_worker: 1
+
+  spawn: true
+  num_samples: -1
+  batch_size: 128
+  resume_from_checkpoint: 0102_v15++_parsenet_unet_base16_focal75_wonormal_channel4_float32_aug.ckpt
+  evaluate: true
+  output: .
+  check_val_every_n_epoch: 1
+  accelerator: "32-true"
+
+model:
+  model_name: Base_model_UNet
+  channels: 4
+  base_channel: 16
+  need_normalize: false
+  with_bn: true
+  output_channels: 1
+  augment: false
+
+  test_threshold: 0.5
+  test_resolution: 256
+  focal_alpha: 0.75
+
+hydra:
+  run:
+    dir: ./outputs/${now:%Y_%m_%d_%H_%M_%S}
+  job:
+    chdir: False

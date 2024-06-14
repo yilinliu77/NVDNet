@@ -8,3 +8,6 @@
 	path = external/GTE
 	url = https://github.com/davideberly/GeometricTools
 
+[submodule "NDC"]
+	path = NDC
+	url = https://github.com/czq142857/NDC
