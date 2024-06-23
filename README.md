@@ -29,7 +29,7 @@ We provide two options for installing NVDNet: packed docker container and manual
 
 ## Option 1: Packed Docker Container (Recommended)
 
-Download the packed docker container including pre-compiled environment and sample data from [here](https://www.dropbox.com/scl/fi/p5zi97igmiygv2x69row7/NVD.tar?rlkey=l5o7hx5qu1zymxd7k4wln1pfq&st=o6zuw47v&dl=0) (~30GB) and load it using the following command:
+Download the packed docker container including pre-compiled environment and sample data from [here]() (~30GB) and load it using the following command:
 
 ```
 cat NVD.tar | docker import - nvd_release:v0
