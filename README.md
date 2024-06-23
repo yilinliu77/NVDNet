@@ -114,7 +114,7 @@ cd ${ROOT_PATH}/python && python test_model.py dataset.root=${DATA_ROOT} dataset
 This step will extract the mesh from the Voronoi diagram. The output mesh will be saved in `${DATA_ROOT}/mesh`.
 
 ```
-cd ${ROOT_PATH} && python scripts/extract_mesh_batched.py ${DATA_ROOT}/voronoi ${DATA_ROOT}/mesh
+cd ${ROOT_PATH} && python scripts/extract_mesh_batched.py ${DATA_ROOT}/voronoi ${DATA_ROOT}/mesh ${DATA_ROOT}/test_ids.txt 
 ```
 
 # Evaluation of the whole test set
