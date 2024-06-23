@@ -5,7 +5,7 @@ import sys
 
 #root=r"/mnt/d/GSP_test/ours/0102_v15++_aug_voronoi/"
 root=r"/mnt/d/GSP_test/ours/0102_v15++_aug_noise_full_voronoi/"
-exe="/root/repo/C/build/src/GSP_Field/extract_mesh/extract_mesh"
+exe="./build/src/extract_mesh/extract_mesh"
 output_dir="/mnt/d/GSP_test/ours/0121_noise_mesh"
 test_id_file = "/mnt/d/GSP_test/test_ids2.txt"
 #test_id_file = "G:/Dataset/GSP/List/test_ids_small.txt"
@@ -14,6 +14,7 @@ test_id_file = "/mnt/d/GSP_test/test_ids2.txt"
 if __name__ == "__main__":
     root = sys.argv[1]
     output_dir = sys.argv[2]
+    test_id_file = sys.argv[3]
 
     tasks = [item[:8] for item in os.listdir(root) if item.endswith("_feat.npy")]
 
