@@ -29,7 +29,7 @@ We provide two options for installing NVDNet: packed docker container and manual
 
 ## Option 1: Packed Docker Container (Recommended)
 
-Download the packed docker container including pre-compiled environment and sample data from [here]() (~30GB) and load it using the following command:
+Download the packed docker container including the pre-compiled environment and sample data from [here](https://www.dropbox.com/scl/fi/p5zi97igmiygv2x69row7/NVD.tar?rlkey=l5o7hx5qu1zymxd7k4wln1pfq&st=sh5fjmfk&dl=0) (~30GB) and load it using the following command:
 
 ```
 cat NVD.tar | docker import - nvd_release:v0
@@ -64,7 +64,7 @@ Download the weights from [here](https://www.dropbox.com/scl/fi/g6k2zwt2bbkk9y3v
 Make sure you are using the latest version.
 
 ```
-cd /root/NVDNet/ && git pull
+cd /root/NVDNet/build && git pull && make -j16
 ```
 
 
@@ -126,7 +126,7 @@ Run the same steps as above to generate the final mesh for evaluation. Also, spe
 Run the evaluation script to evaluate the results.
 
 ```
-cd ${ROOT_PATH} && ./build/src/evaluate/evaluate ${DATA_PATH}/mesh {DATA_PATH}/gt /tmp/test_metrics --chamfer --matched --dist -1
+cd ${ROOT_PATH} && ./build/src/evaluate/evaluate ${DATA_ROOT}/mesh ${DATA_ROOT}/gt /tmp/test_metrics --chamfer --matched --dist -1
 ```
 
 
