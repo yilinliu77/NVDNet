@@ -2,7 +2,7 @@
 
 [[Paper](https://arxiv.org/abs/2406.05261)] [[Video](https://youtu.be/omS38sAbt9w)]
 
-Official implementation of [Split-and-Fit: Learning B-Reps via Structure-Aware Voronoi Partitioning](https://arxiv.org/abs/2406.05261) from [Yilin Liu](https://yilinliu77.github.io/), Jiale Chen, Shanshan Pan, [Daniel Cohen-Or](https://danielcohenor.com/), [Hao Zhang](https://www.cs.sfu.ca/~haoz/) and [Hui Huang](https://vcc.tech/~huihuang).
+Official implementation of [Split-and-Fit: Learning B-Reps via Structure-Aware Voronoi Partitioning](https://arxiv.org/abs/2406.05261) from [Yilin Liu](https://yilinliu77.github.io/), Jiale Chen, Shanshan Pan, [Daniel Cohen-Or](https://danielcohenor.com/), [Hao Zhang](https://www.cs.sfu.ca/~haoz/) and [Hui Huang](https://vcc.tech/~huihuang) on [SIGGRAPH 2024](https://s2024.siggraph.org/).
 
 ![](assets/1teaser.png)
 
@@ -126,7 +126,7 @@ Run the same steps as above to generate the final mesh for evaluation. Also, spe
 Run the evaluation script to evaluate the results.
 
 ```
-cd ${ROOT_PATH} && ./build/src/evaluate/evaluate ${DATA_ROOT}/mesh ${DATA_ROOT}/gt /tmp/test_metrics --chamfer --matched --dist -1
+cd ${ROOT_PATH} && ./build/src/evaluate/evaluate ${DATA_ROOT}/mesh ${DATA_ROOT}/gt /tmp/test_metrics --chamfer --matched --dist -1 --topology
 ```
 
 
