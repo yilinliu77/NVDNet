@@ -43,15 +43,7 @@ docker run -it --shm-size 64g --gpus all --rm --name nvdnet nvd_release:v0 /bin/
 
 If you want to connect to the container using an SSH, please refer to the `docker/Dockerfile` to create an `SSH` wrap. The default user and password is `root:root`.
 
-## Option 2: Dockerfile
-
-```bash
-cd docker && docker build -t nvdnet .
-
-docker run -it --rm --gpus all --name nvdnet -v /path/to/your/data:/mnt/d/ nvdnet
-```
-
-## Option 3: Manual
+## Option 2: Manual
 
 Please refer to `Dockerfile`, `install.sh` and `install_python.sh` for manual installation. This script has been tested on Ubuntu 22.04 with CUDA 11.8.0.
 
