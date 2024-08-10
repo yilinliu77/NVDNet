@@ -2,7 +2,7 @@
 
 ## Option 1: Packed Docker Container (Recommended)
 
-Download the packed docker container including the pre-compiled environment and test data from [here](TODO) (~30GB) and load it using the following command:
+Download the packed docker container including the pre-compiled environment and test data from [here](https://www.dropbox.com/scl/fi/d8r49frrirp9w3taaascp/NVD_baselines.tar?rlkey=cox1aj051v27jhngjzk5yp7l5&st=9knuxkfv&dl=0) (~30GB) and load it using the following command:
 
 ```
 cat NVD_baselines.tar | docker import - nvd_baselines_release:v0
@@ -27,3 +27,6 @@ Following [ComplexGen Baseline](https://github.com/jialechen7/ComplexGen/blob/ma
 # Point2CAD
 
 Following [Point2CAD Baseline](https://github.com/jialechen7/point2cad/blob/main/nvd_test.md) instructions.
+
+# Processed data
+You can also download the processed data of various baselines directly from [here](https://www.dropbox.com/scl/fi/bo2a96kl7mjavm7bmlutb/nvd_baselines.zip?rlkey=ekdtj9jy2t9d7iw3n21xm9p8a&st=m2fs2ftm&dl=0)(~24GB).

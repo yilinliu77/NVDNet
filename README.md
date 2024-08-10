@@ -130,7 +130,7 @@ cd ${ROOT_PATH} && ./build/src/evaluate/evaluate ${DATA_PATH}/mesh {DATA_PATH}/g
 ```
 
 
-# Baselines (TODO)
+# Baselines
 We also provide the container and scripts to run [HPNet](https://github.com/SimingYan/HPNet), [SEDNet](https://github.com/yuanqili78/SED-Net), [ComplexGen](https://github.com/guohaoxiang/ComplexGen), as well as the [Point2CAD](https://github.com/YujiaLiu76/point2cad). Please refer to README.md in the `baselines` folder.
 
 # Training
